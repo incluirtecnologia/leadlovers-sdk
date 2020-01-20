@@ -4,11 +4,11 @@ namespace Intec\LeadloversSdk\Test;
 
 use GuzzleHttp\Client;
 use Intec\LeadloversSdk\Leadlovers;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as FrameworkTestCase;
 
-class LeadloversTest extends TestCase
+class TestCase extends FrameworkTestCase
 {
-    public function testCanCreatInstance()
+    protected function getLeadLoversSdkInstance()
     {
         $host = Leadlovers::PROD_ENDPOINT;
 
@@ -16,8 +16,6 @@ class LeadloversTest extends TestCase
             'base_uri' => $host,
         ]);
 
-        $leadlovers = new Leadlovers($client);
-
-        $this->assertInstanceOf(Leadlovers::class, $leadlovers);
+        return new Leadlovers($client);
     }
 }

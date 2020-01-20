@@ -5,9 +5,9 @@
 ```
 
 
-## Endpoints: 
+## Endpoints:
 
-1.  [ ] Authentication: Token - Get token from user login and password
+1.  [ ] Authentication: Token - Get token from user login and password: http://apill.azurewebsites.net/#operation/Token_GetBody
 2.  [ ] Email: EmailSequences - Retrieve email sequence collection
 3.  [ ] Email: Levels - Retriece levels from email sequence
 4.  [ ] Lead: Lead - Remove lead from sequence/funnel

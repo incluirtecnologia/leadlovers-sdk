@@ -1,7 +1,10 @@
 <phpunit colors="true">
     <testsuites>
-        <testsuite name="LeadloversSDK">
-            <directory>tests</directory>
+        <testsuite name="f">
+            <directory>tests/Functional</directory>
+        </testsuite>
+        <testsuite name="e">
+            <directory>tests/External</directory>
         </testsuite>
     </testsuites>
     <php>
