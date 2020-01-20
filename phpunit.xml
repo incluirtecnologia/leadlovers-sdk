@@ -1,0 +1,16 @@
+<phpunit colors="true">
+    <testsuites>
+        <testsuite name="LeadloversSDK">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="USERNAME" value="" force="true"/>
+        <env name="PASSWORD" value="" force="true"/>
+    </php>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+</phpunit>
