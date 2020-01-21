@@ -3,19 +3,19 @@
 namespace Intec\LeadloversSdk\Test;
 
 use GuzzleHttp\Client;
-use Intec\LeadloversSdk\Leadlovers;
+use Intec\LeadloversSdk\Resource;
 use PHPUnit\Framework\TestCase as FrameworkTestCase;
 
 class TestCase extends FrameworkTestCase
 {
-    protected function getLeadLoversSdkInstance()
+    protected function getClientInstance()
     {
-        $host = Leadlovers::PROD_ENDPOINT;
+        $host = Resource::PROD_ENDPOINT;
 
         $client = new Client([
             'base_uri' => $host,
         ]);
 
-        return new Leadlovers($client);
+        return $client;
     }
 }

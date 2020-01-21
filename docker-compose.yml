@@ -8,4 +8,6 @@ services:
             - XDEBUG_ENABLED=true
         volumes:
             - .:/var/www/app
+            - ./nginx/99_overrides.ini:/etc/php7/conf.d/99_overrides.ini
+            - ./nginx/99_xdebug.ini:/etc/php7/conf.d/99_xdebug.ini
         command: ['tail', '-f', '/dev/null']

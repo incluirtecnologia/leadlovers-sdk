@@ -1,4 +1,4 @@
-<phpunit colors="true">
+<phpunit colors="true" bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="f">
             <directory>tests/Functional</directory>
@@ -8,8 +8,7 @@
         </testsuite>
     </testsuites>
     <php>
-        <env name="USERNAME" value="" force="true"/>
-        <env name="PASSWORD" value="" force="true"/>
+        <env name="TOKEN" value=""/>
     </php>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
