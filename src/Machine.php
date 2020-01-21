@@ -2,8 +2,17 @@
 
 namespace Intec\LeadloversSdk;
 
+use GuzzleHttp\Client;
+
 class Machine extends Resource
 {
+    private $machineCode;
+
+    public function __construct(Client $client, string $token, string $machineCode) {
+        parent::__construct($client, $token);
+        $this->machineCode = $machineCode;
+    }
+
     public function retrieveMachinesFromAccount(int $page = 1, int $registers = 10)
     {
         $endpoint = '/webapi/Machines';
@@ -16,9 +25,9 @@ class Machine extends Resource
         return $this->get($endpoint, $params);
     }
 
-    public function retrieveMachineInfoById(int $machineId)
+    public function retrieveMachineInfoById()
     {
-        $endpoint = '/webapi/Machines/' . $machineId;
+        $endpoint = '/webapi/Machines/' . $this->machineCode;
         $params = [
             'token' => $this->token
         ];
@@ -26,23 +35,23 @@ class Machine extends Resource
         return $this->get($endpoint, $params);
     }
 
-    public function retrieveMachineFormsCollection(int $machineCode)
+    public function retrieveMachineFormsCollection()
     {
         $endpoint = '/webapi/Forms';
         $params = [
             'token' => $this->token,
-            'machineCode' => $machineCode
+            'machineCode' => $this->machineCode
         ];
 
         return $this->get($endpoint, $params);
     }
 
-    public function retrieveMachinePagesCollection(int $machineCode)
+    public function retrieveMachinePagesCollection()
     {
         $endpoint = '/webapi/Pages';
         $params = [
             'token' => $this->token,
-            'machineCode' => $machineCode
+            'machineCode' => $this->machineCode
         ];
 
         return $this->get($endpoint, $params);

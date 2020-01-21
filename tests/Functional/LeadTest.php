@@ -10,11 +10,9 @@ class LeadTest extends TestCase
     public function testRetrieveLeadByEmail()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $lead = new Lead($client, $token);
-        $email = 'teste@teste.com.br';
+        $lead = new Lead($client, $this->token);
 
-        $result = $lead->retrieveLeadByEmail($email);
+        $result = $lead->retrieveLeadByEmail($this->leadEmail);
 
         $this->assertArrayHasKey('Code', $result);
         $this->assertArrayHasKey('Email', $result);
@@ -26,18 +24,15 @@ class LeadTest extends TestCase
         $this->assertArrayHasKey('State', $result);
         $this->assertArrayHasKey('Company', $result);
         $this->assertArrayHasKey('Gender', $result);
-        $this->assertEquals($email, $result['Email']);
-        $this->assertEquals('teste', $result['Name']);
+        $this->assertEquals($this->leadEmail, $result['Email']);
     }
 
     public function testRetrieveLeadLocation()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $lead = new Lead($client, $token);
-        $email = 'teste@teste.com.br';
+        $lead = new Lead($client, $this->token);
 
-        $result = $lead->retrieveLeadLocation($email);
+        $result = $lead->retrieveLeadLocation($this->leadEmail);
 
         $this->assertArrayHasKey('Items', $result);
         $this->assertArrayHasKey('LeadCode', $result['Items'][0]);
@@ -48,7 +43,6 @@ class LeadTest extends TestCase
         $this->assertArrayHasKey('SequenceCode', $result['Items'][0]);
         $this->assertArrayHasKey('SequenceName', $result['Items'][0]);
         $this->assertArrayHasKey('Level', $result['Items'][0]);
-        $this->assertEquals('teste', $result['Items'][0]['LeadName']);
-        $this->assertEquals('teste@teste.com.br', $result['Items'][0]['LeadEmail']);
+        $this->assertEquals($this->leadEmail, $result['Items'][0]['LeadEmail']);
     }
 }

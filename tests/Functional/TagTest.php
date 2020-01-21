@@ -2,7 +2,6 @@
 
 namespace Intec\LeadloversSdk\Test\Functional;
 
-use Intec\LeadloversSdk\Lead;
 use Intec\LeadloversSdk\Tag;
 use Intec\LeadloversSdk\Test\TestCase;
 
@@ -11,12 +10,9 @@ class TagTest extends TestCase
     public function testRetrieveListOfLeadTags()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $tag = new Tag($client, $token);
-        $lead = new Lead($client, $token);
-        $leadCode = $lead->retrieveLeadByEmail('teste@teste.com.br')['Code'];
+        $tag = new Tag($client, $this->token);
 
-        $result = $tag->retrieveListOfLeadTags($leadCode);
+        $result = $tag->retrieveListOfLeadTags($this->leadCode);
 
         $this->assertArrayHasKey('Tags', $result);
         $this->assertArrayHasKey('Id', $result['Tags'][0]);
@@ -26,8 +22,7 @@ class TagTest extends TestCase
     public function testCheckIfTagIsFromUserCaseFalse()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $tag = new Tag($client, $token);
+        $tag = new Tag($client, $this->token);
         $tagId = 123;
 
         $result = $tag->checkIfTagIsFromUser($tagId);
@@ -39,13 +34,9 @@ class TagTest extends TestCase
     public function testCheckIfTagIsFromUserCaseTrue()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $tag = new Tag($client, $token);
-        $lead = new Lead($client, $token);
-        $leadCode = $lead->retrieveLeadByEmail('teste@teste.com.br')['Code'];
-        $tagId = $tag->retrieveListOfLeadTags($leadCode)['Tags'][0]['Id'];
+        $tag = new Tag($client, $this->token);
 
-        $result = $tag->checkIfTagIsFromUser($tagId);
+        $result = $tag->checkIfTagIsFromUser($this->tagId);
 
         $this->assertArrayHasKey('Result', $result);
         $this->assertTrue($result['Result']);
@@ -54,8 +45,7 @@ class TagTest extends TestCase
     public function testGetTagCollectionFromUser()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $tag = new Tag($client, $token);
+        $tag = new Tag($client, $this->token);
 
         $result = $tag->getTagCollectionFromUser();
 

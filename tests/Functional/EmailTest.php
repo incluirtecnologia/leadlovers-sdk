@@ -3,7 +3,6 @@
 namespace Intec\LeadloversSdk\Test\Functional;
 
 use Intec\LeadloversSdk\Email;
-use Intec\LeadloversSdk\Machine;
 use Intec\LeadloversSdk\Test\TestCase;
 
 class EmailTest extends TestCase
@@ -11,8 +10,7 @@ class EmailTest extends TestCase
     public function testRetrieveEmailSequenceCollectionMachineNotFound()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $email = new Email($client, $token);
+        $email = new Email($client, $this->token);
         $machineCode = 1;
 
         $result = $email->retrieveEmailSequenceCollection($machineCode);
@@ -26,28 +24,22 @@ class EmailTest extends TestCase
     public function testRetrieveEmailSequenceCollectionMachineSuccess()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $email = new Email($client, $token);
-        $machine = new Machine($client, $token);
-        $machineCode = $machine->retrieveMachinesFromAccount()['Items'][0]['MachineCode'];
+        $email = new Email($client, $this->token);
 
-        $result = $email->retrieveEmailSequenceCollection($machineCode);
+        $result = $email->retrieveEmailSequenceCollection($this->machineCode);
 
         $this->assertArrayHasKey('Items', $result);
         $this->assertArrayHasKey('SequenceCode', $result['Items'][0]);
         $this->assertArrayHasKey('SequenceName', $result['Items'][0]);
+        $this->assertEquals($this->sequenceCode, $result['Items'][0]['SequenceCode']);
     }
 
     public function testRetrieveLevelsFromEmailSequence()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $email = new Email($client, $token);
-        $machine = new Machine($client, $token);
-        $machineCode = $machine->retrieveMachinesFromAccount()['Items'][0]['MachineCode'];
-        $sequenceCode = $email->retrieveEmailSequenceCollection($machineCode)['Items'][0]['SequenceCode'];
+        $email = new Email($client, $this->token);
 
-        $result = $email->retrieveLevelsFromEmailSequence($machineCode, $sequenceCode);
+        $result = $email->retrieveLevelsFromEmailSequence($this->machineCode, $this->sequenceCode);
 
         $this->assertArrayHasKey('Items', $result);
         $this->assertArrayHasKey('ModelCode', $result['Items'][0]);

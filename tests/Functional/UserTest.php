@@ -10,8 +10,7 @@ class UserTest extends TestCase
     public function testRetrieveUserAccountData()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $user = new User($client, $token);
+        $user = new User($client, $this->token);
 
         $result = $user->retrieveUserAccountData();
 
@@ -31,8 +30,7 @@ class UserTest extends TestCase
     public function testGetUserCode()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $user = new User($client, $token);
+        $user = new User($client, $this->token);
 
         $result = $user->getUserCode();
 
@@ -42,8 +40,7 @@ class UserTest extends TestCase
     public function testGetUserInformation()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $user = new User($client, $token);
+        $user = new User($client, $this->token);
 
         $result = $user->getUserInformation();
 

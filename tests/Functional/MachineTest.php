@@ -10,8 +10,7 @@ class MachineTest extends TestCase
     public function testRetrieveMachinesFromAccount()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $machine = new Machine($client, $token);
+        $machine = new Machine($client, $this->token, $this->machineCode);
 
         $result = $machine->retrieveMachinesFromAccount();
 
@@ -23,13 +22,11 @@ class MachineTest extends TestCase
     public function testRetrieveMachineInfoById()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $machine = new Machine($client, $token);
-        $machineId = $machine->retrieveMachinesFromAccount()['Items'][0]['MachineCode'];
+        $machine = new Machine($client, $this->token, $this->machineCode);
 
-        $result = $machine->retrieveMachineInfoById($machineId);
+        $result = $machine->retrieveMachineInfoById();
 
-        $this->assertEquals($machineId, $result['MachineCode']);
+        $this->assertEquals($this->machineCode, $result['MachineCode']);
         $this->assertArrayHasKey('MachineImage', $result);
         $this->assertArrayHasKey('MachineType', $result);
         $this->assertArrayHasKey('MachineName', $result);
@@ -38,11 +35,9 @@ class MachineTest extends TestCase
     public function testRetrieveMachineFormsCollection()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $machine = new Machine($client, $token);
-        $machineCode = $machine->retrieveMachinesFromAccount()['Items'][3]['MachineCode'];
+        $machine = new Machine($client, $this->token, $this->machineCode);
 
-        $result = $machine->retrieveMachineFormsCollection($machineCode);
+        $result = $machine->retrieveMachineFormsCollection();
 
         $this->assertArrayHasKey('Items', $result);
         $this->assertArrayHasKey('FormCode', $result['Items'][0]);
@@ -55,11 +50,9 @@ class MachineTest extends TestCase
     public function testRetrieveMachinePagesCollection()
     {
         $client = $this->getClientInstance();
-        $token = getenv('TOKEN');
-        $machine = new Machine($client, $token);
-        $machineCode = $machine->retrieveMachinesFromAccount()['Items'][3]['MachineCode'];
+        $machine = new Machine($client, $this->token, $this->machineCode);
 
-        $result = $machine->retrieveMachinePagesCollection($machineCode);
+        $result = $machine->retrieveMachinePagesCollection();
 
         $this->assertArrayHasKey('Items', $result);
         $this->assertArrayHasKey('Path', $result['Items'][0]);
