@@ -7,6 +7,9 @@ use Intec\LeadloversSdk\Test\TestCase;
 
 class UserTest extends TestCase
 {
+    /**
+     * @group get-method
+     */
     public function testRetrieveUserAccountData()
     {
         $client = $this->getClientInstance();
@@ -27,6 +30,9 @@ class UserTest extends TestCase
         $this->assertArrayHasKey('RegisterType', $result['Items'][0]);
     }
 
+    /**
+     * @group get-method
+     */
     public function testGetUserCode()
     {
         $client = $this->getClientInstance();
@@ -37,6 +43,9 @@ class UserTest extends TestCase
         $this->assertArrayHasKey('Value', $result);
     }
 
+    /**
+     * @group get-method
+     */
     public function testGetUserInformation()
     {
         $client = $this->getClientInstance();

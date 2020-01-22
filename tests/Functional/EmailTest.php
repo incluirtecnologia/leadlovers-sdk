@@ -7,6 +7,9 @@ use Intec\LeadloversSdk\Test\TestCase;
 
 class EmailTest extends TestCase
 {
+    /**
+     * @group get-method
+     */
     public function testRetrieveEmailSequenceCollectionMachineNotFound()
     {
         $client = $this->getClientInstance();
@@ -21,6 +24,9 @@ class EmailTest extends TestCase
         ], $result);
     }
 
+    /**
+     * @group get-method
+     */
     public function testRetrieveEmailSequenceCollectionMachineSuccess()
     {
         $client = $this->getClientInstance();
@@ -34,6 +40,9 @@ class EmailTest extends TestCase
         $this->assertEquals($this->sequenceCode, $result['Items'][0]['SequenceCode']);
     }
 
+    /**
+     * @group get-method
+     */
     public function testRetrieveLevelsFromEmailSequence()
     {
         $client = $this->getClientInstance();

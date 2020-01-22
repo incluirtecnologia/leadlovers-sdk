@@ -17,7 +17,6 @@ class Machine extends Resource
     {
         $endpoint = '/webapi/Machines';
         $params = [
-            'token' => $this->token,
             'page' => $page,
             'registers' => $registers
         ];
@@ -28,20 +27,14 @@ class Machine extends Resource
     public function retrieveMachineInfoById()
     {
         $endpoint = '/webapi/Machines/' . $this->machineCode;
-        $params = [
-            'token' => $this->token
-        ];
 
-        return $this->get($endpoint, $params);
+        return $this->get($endpoint);
     }
 
     public function retrieveMachineFormsCollection()
     {
         $endpoint = '/webapi/Forms';
-        $params = [
-            'token' => $this->token,
-            'machineCode' => $this->machineCode
-        ];
+        $params = ['machineCode' => $this->machineCode];
 
         return $this->get($endpoint, $params);
     }
@@ -49,10 +42,7 @@ class Machine extends Resource
     public function retrieveMachinePagesCollection()
     {
         $endpoint = '/webapi/Pages';
-        $params = [
-            'token' => $this->token,
-            'machineCode' => $this->machineCode
-        ];
+        $params = ['machineCode' => $this->machineCode];
 
         return $this->get($endpoint, $params);
     }

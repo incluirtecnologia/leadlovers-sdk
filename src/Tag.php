@@ -7,10 +7,7 @@ class Tag extends Resource
     public function retrieveListOfLeadTags(int $leadCode)
     {
         $endpoint = '/webapi/Tag/Lead';
-        $params = [
-            'token' => $this->token,
-            'leadCode' => $leadCode
-        ];
+        $params = ['leadCode' => $leadCode];
 
         return $this->get($endpoint, $params);
     }
@@ -18,10 +15,7 @@ class Tag extends Resource
     public function checkIfTagIsFromUser(int $tagId)
     {
         $endpoint = '/webapi/TagChecker';
-        $params = [
-            'token' => $this->token,
-            'tag' => $tagId
-        ];
+        $params = ['tag' => $tagId];
 
         return $this->get($endpoint, $params);
     }
@@ -29,10 +23,30 @@ class Tag extends Resource
     public function getTagCollectionFromUser()
     {
         $endpoint = '/webapi/Tags';
+
+        return $this->get($endpoint);
+    }
+
+    public function addTagToLead(string $leadEmail, int $tagId, int $leadScore)
+    {
+        $endpoint = '/webapi/Tag';
         $params = [
-            'token' => $this->token
+            'Email' => $leadEmail,
+            'Tag' => $tagId,
+            'Score' => $leadScore
         ];
 
-        return $this->get($endpoint, $params);
+        return $this->post($endpoint, $params);
+    }
+
+    public function deleteTagFromLead(string $leadEmail, int $tagId)
+    {
+        $endpoint = '/webapi/Tag';
+        $params = [
+            'Email' => $leadEmail,
+            'Tag' => $tagId
+        ];
+
+        return $this->delete($endpoint, $params);
     }
 }

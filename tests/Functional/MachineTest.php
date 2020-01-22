@@ -7,6 +7,9 @@ use Intec\LeadloversSdk\Test\TestCase;
 
 class MachineTest extends TestCase
 {
+    /**
+     * @group get-method
+     */
     public function testRetrieveMachinesFromAccount()
     {
         $client = $this->getClientInstance();
@@ -19,6 +22,9 @@ class MachineTest extends TestCase
         $this->assertArrayHasKey('Registers', $result);
     }
 
+    /**
+     * @group get-method
+     */
     public function testRetrieveMachineInfoById()
     {
         $client = $this->getClientInstance();
@@ -32,6 +38,9 @@ class MachineTest extends TestCase
         $this->assertArrayHasKey('MachineName', $result);
     }
 
+    /**
+     * @group get-method
+     */
     public function testRetrieveMachineFormsCollection()
     {
         $client = $this->getClientInstance();
@@ -47,6 +56,9 @@ class MachineTest extends TestCase
         $this->assertArrayHasKey('pageHtml', $result['Items'][0]);
     }
 
+    /**
+     * @group get-method
+     */
     public function testRetrieveMachinePagesCollection()
     {
         $client = $this->getClientInstance();

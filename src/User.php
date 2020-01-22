@@ -7,30 +7,21 @@ class User extends Resource
     public function retrieveUserAccountData()
     {
         $endpoint = '/webapi/ListDataAccount';
-        $params = [
-            'token' => $this->token
-        ];
 
-        return $this->get($endpoint, $params);
+        return $this->get($endpoint);
     }
 
     public function getUserCode()
     {
         $endpoint = '/webapi/UserCode';
-        $params = [
-            'token' => $this->token
-        ];
 
-        return $this->get($endpoint, $params);
+        return $this->get($endpoint);
     }
 
     public function getUserInformation()
     {
         $endpoint = '/webapi/User';
-        $params = [
-            'token' => $this->token
-        ];
 
-        return $this->get($endpoint, $params);
+        return $this->get($endpoint);
     }
 }

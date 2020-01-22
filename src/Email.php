@@ -7,10 +7,7 @@ class Email extends Resource
     public function retrieveEmailSequenceCollection(int $machineCode)
     {
         $endpoint = '/webapi/EmailSequences';
-        $params = [
-            'token' => $this->token,
-            'machineCode' => $machineCode
-        ];
+        $params = ['machineCode' => $machineCode];
 
         return $this->get($endpoint, $params);
     }
@@ -19,7 +16,6 @@ class Email extends Resource
     {
         $endpoint = '/webapi/Levels';
         $params = [
-            'token' => $this->token,
             'machineCode' => $machineCode,
             'sequenceCode' => $sequenceCode
         ];
