@@ -1,7 +1,14 @@
-## Config:
+## Tests:
+
+In order to run tests, it's necessary to have an access token (can be obtained from the dashboard), a machine, an email sequence, a lead and a tag registered (can be done via dashboard). After that, add the following environment variables to the file `tests/settings.local.php`.
 
 ```php
-
+putenv('TOKEN=your_access_token');
+putenv('MACHINE_CODE=your_machine_code');
+putenv('SEQUENCE_CODE=your_sequence_code');
+putenv('LEAD_EMAIL=your_lead_email');
+putenv('LEAD_CODE=your_lead_code');
+putenv('TAG_ID=your_tag_id');
 ```
 
 
